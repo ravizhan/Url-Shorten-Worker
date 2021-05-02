@@ -1,12 +1,12 @@
 let res
   function shorturl() {
     if(document.querySelector("#text").value==""){
-        alert("Url cannot be empty!")
+        alert("网址不能为空！")
         return
     }
 
     document.getElementById("searchbtn").disabled=true;
-	document.getElementById("searchbtn").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Please wait...';
+	document.getElementById("searchbtn").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>请稍候...';
     fetch(window.location.pathname, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -17,14 +17,14 @@ let res
   .then(function(myJson) {
     res = myJson;
     document.getElementById("searchbtn").disabled=false;
-	document.getElementById("searchbtn").innerHTML=' Shorten it';
+	document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
     if(res.key!=="")
-    document.getElementById("result").innerHTML=window.location.host+res.key;
+    document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
     $('#exampleModal').modal('show')
-  }).catch(function(err){alert("Unknow error. Please retry!");
+  }).catch(function(err){alert("未知错误，请重试");
   console.log(err);
   document.getElementById("searchbtn").disabled=false;
-	document.getElementById("searchbtn").innerHTML=' Shorten it';})
+	document.getElementById("searchbtn").innerHTML=' 立刻缩短！';})
   }
   function copyurl (id, attr) {
     let target = null;
@@ -51,9 +51,9 @@ let res
         window.getSelection().addRange(range);
         document.execCommand('copy');
         window.getSelection().removeAllRanges();
-        console.log('Copy success')
+        console.log('复制成功')
     } catch (e) {
-        console.log('Copy error')
+        console.log('复制失败，请手动复制')
     }
 
     if (attr) {
@@ -65,7 +65,3 @@ let res
     $('[data-toggle="popover"]').popover()
   })
   console.log("https://github.com/xyTom/Url-Shorten-Worker/")
-  let notice="Notice: This service is for demonstration purposes only and the generated short links will automatically expire after 24 hours."
-  if(window.location.host=="5it.me"){
-    document.getElementById("notice").innerHTML=notice
-  }
