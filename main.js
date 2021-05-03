@@ -4,6 +4,7 @@ let res
         alert("网址不能为空！")
         return
     }
+
     document.getElementById("searchbtn").disabled=true;
 	document.getElementById("searchbtn").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>请稍候...';
     fetch(window.location.pathname, {
