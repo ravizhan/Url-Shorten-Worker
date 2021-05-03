@@ -4,7 +4,6 @@ let res
         alert("网址不能为空！")
         return
     }
-
     document.getElementById("searchbtn").disabled=true;
 	document.getElementById("searchbtn").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>请稍候...';
     fetch(window.location.pathname, {
@@ -21,10 +20,9 @@ let res
     if(res.key!=="")
     document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
     $('#exampleModal').modal('show')
-  }).catch(function(err){alert("未知错误，请重试");
-  console.log(err);
+  }).catch(function(err){alert(res.key);
   document.getElementById("searchbtn").disabled=false;
-	document.getElementById("searchbtn").innerHTML=' 立刻缩短！';})
+  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';})
   }
   function copyurl (id, attr) {
     let target = null;
@@ -64,4 +62,3 @@ let res
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
-  console.log("https://github.com/xyTom/Url-Shorten-Worker/")
