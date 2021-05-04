@@ -2,6 +2,7 @@ let res
   function shorturl(token) {
     if(document.querySelector("#text").value==""){
         alert("网址不能为空！")
+		grecaptcha.reset();
         return
     }
 	console.log(token)
