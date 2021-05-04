@@ -46,6 +46,8 @@ let res
 		  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
 	  },
 	  })
+	  grecaptcha.reset();
+	}
   function copyurl (id, attr) {
     let target = null;
 
@@ -84,4 +86,3 @@ let res
   $(function () {
     $('[data-toggle="popover"]').popover()
   })
-  
