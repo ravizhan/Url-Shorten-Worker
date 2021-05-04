@@ -23,35 +23,13 @@ let res
     res = myJson;
     document.getElementById("searchbtn").disabled=false;
 	document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
-    if(res.key!=="")
-    document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
+    if(res.content!=="")
+    document.getElementById("result").innerHTML="https://"+window.location.host+res.content;
     $('#exampleModal').modal('show')
-  }).catch(function(err){alert(res.key);
+  }).catch(function(err){alert(res.content);
   document.getElementById("searchbtn").disabled=false;
   document.getElementById("searchbtn").innerHTML=' 立刻缩短！';})
   }
-	// $.ajax({
-	//   url: window.location.pathname,
-	//   type: "post",
-	//   headers: { 'Content-Type': 'application/json' },
-	//   success: function(result){
-	// 	  res = result.json()
-	// 	  console.log(res)
-	// 	  document.getElementById("searchbtn").disabled=false;
-	// 	  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
-	// 	  document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
-	// 	  $('#exampleModal').modal('show')
-	//   },
-	//   error: function(result){
-	// 	  res = result.json()
-	// 	  console.log(res)
-	// 	  alert(res.key);
-	// 	  document.getElementById("searchbtn").disabled=false;
-	// 	  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
-	//   },
-	//   })
-	//   grecaptcha.reset();
-	// }
   function copyurl (id, attr) {
     let target = null;
 
