@@ -1,54 +1,57 @@
 let res
   function shorturl(token) {
     if(document.querySelector("#text").value==""){
-        alert("网址不能为空！")
 		grecaptcha.reset();
+        alert("网址不能为空！")
         return
     }
-	console.log(token)
 
     document.getElementById("searchbtn").disabled=true;
 	document.getElementById("searchbtn").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>请稍候...';
- //    fetch(window.location.pathname, {
- //      method: 'POST',
- //      headers: { 'Content-Type': 'application/json' },
- //      body: JSON.stringify({ url: document.querySelector("#text").value })
- //    }).then(function(response) {
- //    return response.json();
- //  })
- //  .then(function(myJson) {
- //    res = myJson;
- //    document.getElementById("searchbtn").disabled=false;
-	// document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
- //    if(res.key!=="")
- //    document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
- //    $('#exampleModal').modal('show')
- //  }).catch(function(err){alert(res.key);
- //  document.getElementById("searchbtn").disabled=false;
- //  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';})
- //  }
-	$.ajax({
-	  url: window.location.pathname,
-	  type: "post",
-	  headers: { 'Content-Type': 'application/json' },
-	  success: function(result){
-		  res = result.json()
-		  console.log(res)
-		  document.getElementById("searchbtn").disabled=false;
-		  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
-		  document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
-		  $('#exampleModal').modal('show')
-	  },
-	  error: function(result){
-		  res = result.json()
-		  console.log(res)
-		  alert(res.key);
-		  document.getElementById("searchbtn").disabled=false;
-		  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
-	  },
+    fetch(window.location.pathname, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+		  url: document.querySelector("#text").value ,
+		  token: token
 	  })
-	  grecaptcha.reset();
-	}
+    }).then(function(response) {
+		grecaptcha.reset();
+		return response.json();
+  })
+  .then(function(myJson) {
+    res = myJson;
+    document.getElementById("searchbtn").disabled=false;
+	document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
+    if(res.key!=="")
+    document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
+    $('#exampleModal').modal('show')
+  }).catch(function(err){alert(res.key);
+  document.getElementById("searchbtn").disabled=false;
+  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';})
+  }
+	// $.ajax({
+	//   url: window.location.pathname,
+	//   type: "post",
+	//   headers: { 'Content-Type': 'application/json' },
+	//   success: function(result){
+	// 	  res = result.json()
+	// 	  console.log(res)
+	// 	  document.getElementById("searchbtn").disabled=false;
+	// 	  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
+	// 	  document.getElementById("result").innerHTML="https://"+window.location.host+res.key;
+	// 	  $('#exampleModal').modal('show')
+	//   },
+	//   error: function(result){
+	// 	  res = result.json()
+	// 	  console.log(res)
+	// 	  alert(res.key);
+	// 	  document.getElementById("searchbtn").disabled=false;
+	// 	  document.getElementById("searchbtn").innerHTML=' 立刻缩短！';
+	//   },
+	//   })
+	//   grecaptcha.reset();
+	// }
   function copyurl (id, attr) {
     let target = null;
 
